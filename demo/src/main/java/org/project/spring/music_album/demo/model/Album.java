@@ -3,7 +3,7 @@ package org.project.spring.music_album.demo.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,7 +42,7 @@ public class Album {
     private LocalDate dataPubblicazione;
 
     @NotBlank(message = "La descrizione non può essere vuota")
-    @Size(max = 255, message = "La descrizione non può superare i 255 caratteri")
+    @Column(columnDefinition = "TEXT")
     private String descrizione;
 
     @NotNull(message = "Inserire un numero valido")
@@ -50,7 +50,7 @@ public class Album {
     private Integer tracce;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "artist_id", nullable = false)
     private Artista artista;
 
