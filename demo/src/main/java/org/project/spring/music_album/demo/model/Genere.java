@@ -32,4 +32,37 @@ public class Genere {
     @ManyToMany(mappedBy = "generi")
     @JsonIgnore
     private List<Album> albums;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Artista> getArtisti() {
+        return artisti;
+    }
+
+    public void setArtisti(List<Artista> artisti) {
+        this.artisti = artisti;
+    }
+
+    public List<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
+    }
+
 }

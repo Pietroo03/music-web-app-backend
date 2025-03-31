@@ -57,4 +57,69 @@ public class Album {
     @ManyToMany
     @JoinTable(name = "album_genre", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genere> generi;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public LocalDate getDataPubblicazione() {
+        return dataPubblicazione;
+    }
+
+    public void setDataPubblicazione(LocalDate dataPubblicazione) {
+        this.dataPubblicazione = dataPubblicazione;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public Integer getTracce() {
+        return tracce;
+    }
+
+    public void setTracce(Integer tracce) {
+        this.tracce = tracce;
+    }
+
+    public Artista getArtista() {
+        return artista;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }
+
+    public List<Genere> getGeneri() {
+        return generi;
+    }
+
+    public void setGeneri(List<Genere> generi) {
+        this.generi = generi;
+    }
+
 }
