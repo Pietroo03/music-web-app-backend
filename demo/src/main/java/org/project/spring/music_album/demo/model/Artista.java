@@ -1,6 +1,7 @@
 package org.project.spring.music_album.demo.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -10,6 +11,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -51,7 +56,14 @@ public class Artista {
     private String etichetta;
 
     @NotBlank(message = "La descrizione non può essere vuota")
-    @Size(max = 255, message = "La descrizione non può superare i 255 caratteri")
+    @Column(columnDefinition = "TEXT")
     private String descrizione;
+
+    @OneToMany(mappedBy = "artista")
+    private List<Album> albums;
+
+    @ManyToMany
+    @JoinTable(name = "artist_genre", joinColumns = @JoinColumn(name = "artist_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genere> generi;
 
 }

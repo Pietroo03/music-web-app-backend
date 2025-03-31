@@ -1,12 +1,19 @@
 package org.project.spring.music_album.demo.model;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -41,4 +48,13 @@ public class Album {
     @NotNull(message = "Inserire un numero valido")
     @Min(value = 1, message = "Le tracce devono essere maggiori di 0")
     private Integer tracce;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "artist_id", nullable = false)
+    private Artista artista;
+
+    @ManyToMany
+    @JoinTable(name = "album_genre", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genere> generi;
 }
