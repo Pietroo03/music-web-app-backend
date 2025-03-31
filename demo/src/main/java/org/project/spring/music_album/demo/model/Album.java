@@ -22,6 +22,10 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Il nome non può essere vuoto")
+    @Size(min = 3, message = "Il nome deve essere lungo almeno 3 caratteri")
+    private String nome;
+
     @NotBlank(message = "Inserisci un URL valido")
     private String foto;
 
