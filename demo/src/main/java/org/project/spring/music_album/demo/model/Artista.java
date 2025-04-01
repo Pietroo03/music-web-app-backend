@@ -3,9 +3,7 @@ package org.project.spring.music_album.demo.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,8 +22,6 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "artists")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-
 public class Artista {
 
     @Id
@@ -61,7 +57,7 @@ public class Artista {
     private String descrizione;
 
     @OneToMany(mappedBy = "artista")
-    @JsonIgnoreProperties("artista")
+    @JsonBackReference
     private List<Album> albums;
 
     @ManyToMany

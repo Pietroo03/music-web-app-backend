@@ -3,10 +3,11 @@ package org.project.spring.music_album.demo.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,9 +50,9 @@ public class Album {
     @Min(value = 1, message = "Le tracce devono essere maggiori di 0")
     private Integer tracce;
 
-    @ManyToOne
-    @JsonIgnoreProperties("albums")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "artist_id", nullable = false)
+    @JsonManagedReference
     private Artista artista;
 
     @ManyToMany

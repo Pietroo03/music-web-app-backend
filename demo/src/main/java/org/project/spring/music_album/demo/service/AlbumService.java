@@ -16,7 +16,7 @@ public class AlbumService {
     private AlbumRepository albumRepository;
 
     public List<Album> findAll() {
-        return albumRepository.findAll();
+        return albumRepository.findAllByOrderByArtista_IdAscDataPubblicazioneAsc();
     }
 
     public List<Album> findAllSortedByName() {
