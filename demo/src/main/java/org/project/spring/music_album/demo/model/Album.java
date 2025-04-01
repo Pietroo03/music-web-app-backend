@@ -3,7 +3,7 @@ package org.project.spring.music_album.demo.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,7 +50,7 @@ public class Album {
     private Integer tracce;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnoreProperties("albums")
     @JoinColumn(name = "artist_id", nullable = false)
     private Artista artista;
 
