@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,7 +60,7 @@ public class Artista {
     private String descrizione;
 
     @OneToMany(mappedBy = "artista")
-    @JsonBackReference
+    @JsonIgnoreProperties("artista")
     private List<Album> albums;
 
     @ManyToMany

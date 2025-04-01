@@ -3,6 +3,7 @@ package org.project.spring.music_album.demo.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -24,6 +25,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "albums")
+
 public class Album {
 
     @Id
@@ -52,7 +54,7 @@ public class Album {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "artist_id", nullable = false)
-    @JsonManagedReference
+    @JsonIgnoreProperties("albums")
     private Artista artista;
 
     @ManyToMany

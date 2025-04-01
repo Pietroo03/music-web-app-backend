@@ -67,15 +67,14 @@ public class ArtistaService {
     }
 
     public void deleteById(Integer id) {
-
         Artista artista = getById(id);
 
-        for (Album albumDaCancellare : artista.getAlbums()) {
-            albumRepository.delete(albumDaCancellare);
+        for (Genere genere : artista.getGeneri()) {
+            genere.getArtisti().remove(artista);
         }
 
-        for (Genere genereDaCancellare : artista.getGeneri()) {
-            genereRepository.delete(genereDaCancellare);
+        for (Album album : artista.getAlbums()) {
+            albumRepository.delete(album);
         }
 
         artistaRepository.delete(artista);
