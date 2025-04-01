@@ -50,7 +50,29 @@ public class ArtistaService {
     }
 
     public Artista update(Artista artista) {
-        return artistaRepository.save(artista);
+        Optional<Artista> artistaEsistente = artistaRepository.findById(artista.getId());
+
+        if (artistaEsistente.isPresent()) {
+            Artista artistaDaAggiornare = artistaEsistente.get();
+
+            // Aggiorna solo i campi modificabili
+            artistaDaAggiornare.setAlias(artista.getAlias());
+            artistaDaAggiornare.setFoto(artista.getFoto());
+            artistaDaAggiornare.setNome(artista.getNome());
+            artistaDaAggiornare.setCognome(artista.getCognome());
+            artistaDaAggiornare.setDataNascita(artista.getDataNascita());
+            artistaDaAggiornare.setEtichetta(artista.getEtichetta());
+            artistaDaAggiornare.setDescrizione(artista.getDescrizione());
+
+            // Non sovrascrivere albums se non è presente nella richiesta
+            if (artista.getAlbums() != null) {
+                artistaDaAggiornare.setAlbums(artista.getAlbums());
+            }
+
+            return artistaRepository.save(artistaDaAggiornare);
+        } else {
+            throw new RuntimeException("Artista non trovato con ID: " + artista.getId());
+        }
     }
 
     public void delete(Artista artista) {
