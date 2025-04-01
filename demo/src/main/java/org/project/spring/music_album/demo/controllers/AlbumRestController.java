@@ -28,8 +28,8 @@ public class AlbumRestController {
 
     @GetMapping
     public List<Album> index() {
-        List<Album> artisti = albumService.findAll();
-        return artisti;
+        List<Album> albums = albumService.findAll();
+        return albums;
     }
 
     @GetMapping("/{id}")
