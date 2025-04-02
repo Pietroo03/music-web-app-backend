@@ -9,6 +9,7 @@ import org.project.spring.music_album.demo.service.AlbumService;
 import org.project.spring.music_album.demo.service.ArtistaService;
 import org.project.spring.music_album.demo.service.GenereService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,6 +37,7 @@ public class ArtistaController {
 
     @GetMapping
     public String index(@RequestParam(name = "search", required = false, defaultValue = "") String search,
+            Authentication authentication,
             Model model) {
         List<Artista> artists;
 
@@ -52,6 +54,7 @@ public class ArtistaController {
 
         model.addAttribute("artists", artists);
         model.addAttribute("search", search);
+        model.addAttribute("username", authentication.getName());
 
         return "artists/index";
     }
