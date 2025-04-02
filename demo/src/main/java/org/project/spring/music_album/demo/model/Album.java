@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,10 +38,12 @@ public class Album {
     @NotBlank(message = "Inserisci un URL valido")
     private String foto;
 
-    @NotNull
+    @NotNull(message = "La data di pubblicazione è obbligatoria")
     @Past(message = "Inserire una data di pubblicazione valida")
     @Column(name = "data_di_pubblicazione")
     private LocalDate dataPubblicazione;
+
+    private String formattedDataPubblicazione;
 
     @NotBlank(message = "La descrizione non può essere vuota")
     @Column(columnDefinition = "TEXT")
@@ -91,6 +92,14 @@ public class Album {
 
     public void setDataPubblicazione(LocalDate dataPubblicazione) {
         this.dataPubblicazione = dataPubblicazione;
+    }
+
+    public String getFormattedDataPubblicazione() {
+        return formattedDataPubblicazione;
+    }
+
+    public void setFormattedDataPubblicazione(String formattedDataPubblicazione) {
+        this.formattedDataPubblicazione = formattedDataPubblicazione;
     }
 
     public String getDescrizione() {

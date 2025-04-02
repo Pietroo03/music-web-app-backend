@@ -31,6 +31,10 @@ public class GenereService {
         return genereRepository.findById(id).get();
     }
 
+    public List<Genere> findByName(String nome) {
+        return genereRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
     public Genere create(Genere Genere) {
         return genereRepository.save(Genere);
     }

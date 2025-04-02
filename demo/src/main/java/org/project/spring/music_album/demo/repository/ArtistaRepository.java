@@ -6,5 +6,5 @@ import org.project.spring.music_album.demo.model.Artista;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArtistaRepository extends JpaRepository<Artista, Integer> {
-    List<Artista> findByNomeContainingIgnoreCase(String nome);
+    List<Artista> findByAliasContainingIgnoreCase(String alias);
 }

@@ -1,14 +1,9 @@
 package org.project.spring.music_album.demo.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +28,8 @@ public class Artista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "L'alias non può essere vuoto")
-    @Size(min = 3, message = "L'alias deve essere lungo almeno 3 caratteri")
+    @NotBlank(message = "L''alias non può essere vuoto")
+    @Size(min = 3, message = "L''alias deve essere lungo almeno 3 caratteri")
     private String alias;
 
     @NotBlank(message = "Inserisci un URL valido")
@@ -48,13 +43,15 @@ public class Artista {
     @Size(min = 3, message = "Il cognome deve essere lungo almeno 3 caratteri")
     private String cognome;
 
-    @NotNull
+    @NotNull(message = "La data di nascita è obbligatoria")
     @Past(message = "Inserire una data di nascita valida")
     @Column(name = "data_di_nascita")
     private LocalDate dataNascita;
 
-    @NotBlank(message = "L'etichetta non può essere vuota")
-    @Size(min = 3, message = "L'etichetta deve essere lunga almeno 3 caratteri")
+    private String formattedDataNascita;
+
+    @NotBlank(message = "L''etichetta non può essere vuota")
+    @Size(min = 3, message = "L''etichetta deve essere lunga almeno 3 caratteri")
     private String etichetta;
 
     @NotBlank(message = "La descrizione non può essere vuota")
@@ -115,6 +112,14 @@ public class Artista {
 
     public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
+    }
+
+    public String getFormattedDataNascita() {
+        return formattedDataNascita;
+    }
+
+    public void setFormattedDataNascita(String formattedDataNascita) {
+        this.formattedDataNascita = formattedDataNascita;
     }
 
     public String getEtichetta() {

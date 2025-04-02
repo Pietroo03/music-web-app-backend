@@ -41,8 +41,8 @@ public class ArtistaService {
         return artistaRepository.findById(id).get();
     }
 
-    public List<Artista> findByName(String nome) {
-        return artistaRepository.findByNomeContainingIgnoreCase(nome);
+    public List<Artista> findByName(String alias) {
+        return artistaRepository.findByAliasContainingIgnoreCase(alias);
     }
 
     public Artista create(Artista artista) {

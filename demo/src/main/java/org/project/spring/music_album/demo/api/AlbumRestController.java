@@ -1,4 +1,4 @@
-package org.project.spring.music_album.demo.controllers;
+package org.project.spring.music_album.demo.api;
 
 import java.util.List;
 import java.util.Optional;
