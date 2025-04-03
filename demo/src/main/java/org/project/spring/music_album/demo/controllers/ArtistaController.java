@@ -84,6 +84,7 @@ public class ArtistaController {
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("artista") Artista formArtista, BindingResult bindingResult,
             Model model) {
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("generi", genereService.findAll());
             return "artists/create-or-edit";

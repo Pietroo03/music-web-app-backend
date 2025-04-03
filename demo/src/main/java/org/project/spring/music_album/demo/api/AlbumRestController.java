@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,7 +28,6 @@ public class AlbumRestController {
     @Autowired
     private AlbumService albumService;
 
-    @Transactional
     @GetMapping
     public List<Album> index() {
         List<Album> albums = albumService.findAll();
