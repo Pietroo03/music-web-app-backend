@@ -55,7 +55,6 @@ public class ArtistaService {
         if (artistaEsistente.isPresent()) {
             Artista artistaDaAggiornare = artistaEsistente.get();
 
-            // Aggiorna solo i campi modificabili
             artistaDaAggiornare.setAlias(artista.getAlias());
             artistaDaAggiornare.setFoto(artista.getFoto());
             artistaDaAggiornare.setNome(artista.getNome());
@@ -64,9 +63,12 @@ public class ArtistaService {
             artistaDaAggiornare.setEtichetta(artista.getEtichetta());
             artistaDaAggiornare.setDescrizione(artista.getDescrizione());
 
-            // Non sovrascrivere albums se non è presente nella richiesta
             if (artista.getAlbums() != null) {
                 artistaDaAggiornare.setAlbums(artista.getAlbums());
+            }
+
+            if (artista.getGeneri() != null) {
+                artistaDaAggiornare.setGeneri(artista.getGeneri());
             }
 
             return artistaRepository.save(artistaDaAggiornare);
